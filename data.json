@@ -1,0 +1,17 @@
+[
+    {
+        "username": "test",
+        "email": "test",
+        "habits": [
+            {
+                "name": "feed my dog",
+                "description": "dog",
+                "creation_date": "2025-07-16",
+                "timeframe": "daily",
+                "last_completed": null,
+                "streak": 0,
+                "completions": []
+            }
+        ]
+    }
+]
