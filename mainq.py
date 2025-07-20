@@ -64,7 +64,7 @@ def main_menu():
 
         elif action == "Quit":
             print("Goodbye!")
-            quit_app
+            quit_app()
 
 #analytics menu is a seperate method, similar technical approach as the main menu, but methods called are in different class analytics. file analytics2_0.py was my seccond attempt at this class (I had some issues at first)
 #Uses same questionary methods as in main menu
