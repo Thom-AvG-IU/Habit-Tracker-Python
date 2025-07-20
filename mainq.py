@@ -23,6 +23,7 @@ def load_users():
             return [User.from_dict(u) for u in json.load(f)]
     except:
         return []
+    
 #called when new user is created, writes to json file
 def save_users(users):
     with open(DATA_FILE, "w") as f:
@@ -44,6 +45,7 @@ def main_menu():
             email = questionary.text("Email:").ask()
             users.append(User(name, email))
             print(f"User '{name}' has been created.")
+            save_users(users)
 
         elif action == "Select User":
             if not users:
