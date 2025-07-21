@@ -86,10 +86,10 @@ def analytics_menu():
                 Analytics.get_hardest_habit()
 
         elif action == "See Highest Failrate":
-                Analytics.get_hardest_habit
+                Analytics.get_highest_fail_rate()
 
         elif action == "See Highest Completionrate":
-                Analytics.get_highest_completion_rate
+                Analytics.get_highest_completion_rate()
         #variable input_name has the be an exact match with the name used in Habit, definitely one of the most inconvenient parts of the app.
         #alternatively I could also iterate through all habits to have the user select, but this could then become too big in case of many habits. 
         elif action == "See Completionrate For Habit":
