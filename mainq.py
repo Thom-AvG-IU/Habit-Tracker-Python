@@ -93,7 +93,6 @@ def analytics_menu():
         #variable input_name has the be an exact match with the name used in Habit, definitely one of the most inconvenient parts of the app.
         #alternatively I could also iterate through all habits to have the user select, but this could then become too big in case of many habits. 
         elif action == "See Completionrate For Habit":
-                print("insert habit name\n")
                 input_name = input("5. Enter a habit name to get its completion rate: ")
                 Analytics.get_completion_rate_for_name(input_name)
 

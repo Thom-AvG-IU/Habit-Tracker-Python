@@ -8,7 +8,7 @@ class Analytics:
 
     @staticmethod
     def _load_habits():
-        """Load and return all habits from all users in data.json"""
+        #"Load and returns all habits from all users in data.json
         with open(DATA_FILE, "r") as f:
             users = json.load(f)
         all_habits = []
@@ -63,6 +63,10 @@ class Analytics:
         rate = Analytics._get_completion_rate(habit)
         print(f"Completion Rate for '{habit.name}': {rate*100:.1f}%")
 
+    
+    #gets completionrate for other methods by deviding the amount of completions (length of the list habit completions, through the total days since habit creation)
+    #so it essentially calculates out of all days the habit has been active, how many times it has been completed. So only applicable for daily habits as weekly or monthly will
+    #not have fair rations, as it is not to be completed daily. Potential to make a different completion rate for different timeframes
     @staticmethod
     def _get_completion_rate(habit) -> float:
         if not habit.completions:

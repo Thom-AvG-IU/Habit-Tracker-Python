@@ -9,35 +9,42 @@ class Habit:
         self.last_completed = None
         self.streak = 0
         self.completions = []
-
+    # reset streak to 0, only activated by user purposely
     def reset_streak(self):
         self.streak = 0
-
+    # returns streak of a habit
     def get_streak(self) -> int:
         return self.streak
-
+    # check when the habit should be performed next
+    #based on the timeframe, here called offsets.
     def get_next_due_date(self) -> date:
         if not self.last_completed:
             return self.creation_date
         offsets = {"daily": 1, "weekly": 7, "monthly": 30}
         return self.last_completed + timedelta(days=offsets.get(self.timeframe, 0))
-
+    #completing a habit, calculates the delta between today and the last completed date. 
     def complete(self):
         today = date.today()
+        #depending on the timeframe it checks if you are in the timerange if so increases by 1
+        #checks if the habit has been completed in the past
         if self.last_completed:
             days = (today - self.last_completed).days
             if (self.timeframe == "daily" and days == 1) or \
                (self.timeframe == "weekly" and days <= 7) or \
                (self.timeframe == "monthly" and days <= 31):
                 self.streak += 1
+            #if not, then it considers you failed the habit, and are back to a streak of 1
+            #a different operation, but the same outcome of the original if statement, in the future there can be different consequences for failing a streak
+            #instead of starting a new one
             else:
                 self.streak = 1
         else:
             self.streak = 1
-
+        #keeps record of all completion dates.
         self.last_completed = today
         self.completions.append(today)
 
+    #methods for converting habit to json, used sources for below design.
     def __str__(self):
         return (
             f"Habit: {self.name}\n"
@@ -47,9 +54,6 @@ class Habit:
             f"Streak: {self.streak}\n"
             f"Next Due: {self.get_next_due_date()}"
         )
-
-
-    #to_dict methods to work with JSON.
 
     def to_dict(self):
         return {
