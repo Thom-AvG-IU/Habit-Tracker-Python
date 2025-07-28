@@ -110,7 +110,7 @@ def user_menu(user):
     #prints the user selected, and calls the reminder class upon selecting a user.
 
     print(f"\nYou selected user: {user.username}")
-
+    ReminderClass.send_reminders
     print("\n=== Habit Reminders for Today ===")
     ReminderClass.send_reminders(user, date.today())
     print("=================================")
