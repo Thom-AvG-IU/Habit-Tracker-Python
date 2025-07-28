@@ -23,3 +23,5 @@ analytics2_0.py - contains the methods for further analysis
 data.json - JSON that data persists to and from
 test_habit.py - unit test for habits
 test_user.py -unit test for users
+
+further dependencies: questionary -> pip install questionary
