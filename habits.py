@@ -29,10 +29,19 @@ class Habit:
         #checks if the habit has been completed in the past
         if self.last_completed:
             days = (today - self.last_completed).days
-            if (self.timeframe == "daily" and days == 1) or \
-               (self.timeframe == "weekly" and days <= 7) or \
-               (self.timeframe == "monthly" and days <= 31):
+            # print(today) used for debugging
+            # print("today^")
+            # print (self.last_completed) 
+            # print("last completed^")
+
+            # print("days calculation")
+            # print(days)
+            if (self.timeframe == "daily" and 1 <= days <= 2) or \
+               (self.timeframe == "weekly" and 6 <= days <= 8) or \
+               (self.timeframe == "monthly" and 28 <= days <= 31):
                 self.streak += 1
+                # print("streak calculation")
+                # print(self.streak)
             #if not, then it considers you failed the habit, and are back to a streak of 1
             #a different operation, but the same outcome of the original if statement, in the future there can be different consequences for failing a streak
             #instead of starting a new one

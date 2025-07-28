@@ -1,6 +1,7 @@
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from habits import Habit
+
 
 DATA_FILE = "data.json"
 
@@ -64,15 +65,36 @@ class Analytics:
         print(f"Completion Rate for '{habit.name}': {rate*100:.1f}%")
 
     
-    #gets completionrate for other methods by deviding the amount of completions (length of the list habit completions, through the total days since habit creation)
-    #so it essentially calculates out of all days the habit has been active, how many times it has been completed. So only applicable for daily habits as weekly or monthly will
-    #not have fair rations, as it is not to be completed daily. Potential to make a different completion rate for different timeframes
+    #improved completionrate calculation based on feedback phase 2
+    #introduced seperate logic for different timeframes using timedelta
+
     @staticmethod
     def _get_completion_rate(habit) -> float:
         if not habit.completions:
             return 0.0
-        end_date = habit.last_completed or datetime.today().date()
-        total_days = (end_date - habit.creation_date).days + 1
-        if total_days <= 0:
+        
+        end_date = habit.last_completed or datetime.today()
+        total_periods = 0
+
+        if habit.timeframe == "daily":
+            total_periods = (end_date - habit.creation_date).days + 1
+
+        elif habit.timeframe == "weekly":
+
+            start_of_creation_week = habit.creation_date - timedelta(days=habit.creation_date.weekday())
+            start_of_end_week = end_date - timedelta(days=end_date.weekday())
+            total_periods = ((start_of_end_week - start_of_creation_week).days // 7) + 1
+
+        elif habit.timeframe == "monthly":
+
+            total_periods = (end_date.year - habit.creation_date.year) * 12 + \
+                        (end_date.month - habit.creation_date.month) + 1
+            
+        else:
+            # Fallback for unknown timeframe, treated as daily
+            total_periods = (end_date - habit.creation_date).days + 1
+
+        if total_periods <= 0:
             return 0.0
-        return len(habit.completions) / total_days
+
+        return len(habit.completions) / total_periods

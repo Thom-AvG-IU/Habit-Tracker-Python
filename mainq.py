@@ -66,6 +66,7 @@ def main_menu():
 
         elif action == "Quit":
             print("Goodbye!")
+            save_users(users)
             quit_app()
 
 #analytics menu is a seperate method, similar technical approach as the main menu, but methods called are in different class analytics. file analytics2_0.py was my seccond attempt at this class (I had some issues at first)
@@ -98,6 +99,7 @@ def analytics_menu():
 
         elif action == "Quit":
             print("Goodbye!")
+            save_users(users)
             quit_app()
 
 
@@ -131,6 +133,7 @@ def user_menu(user):
                 choices=["daily", "weekly", "monthly"]
             ).ask()
             user.add_habit(Habit(name, desc, date.today(), timeframe))
+            save_users(users)
             print("Habit added.")
 
         elif ua == "Complete Habit":
@@ -154,6 +157,7 @@ def user_menu(user):
                     print(f"- {h.name} (due: {h.get_next_due_date()})")
 
         elif ua == "Back":
+            save_users(users)
             break
 
 
