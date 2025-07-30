@@ -36,6 +36,8 @@ class Habit:
 
             # print("days calculation")
             # print(days)
+
+            #improved version of the complete function to account for early completions
             if (self.timeframe == "daily" and 1 <= days <= 2) or \
                (self.timeframe == "weekly" and 6 <= days <= 8) or \
                (self.timeframe == "monthly" and 28 <= days <= 31):
