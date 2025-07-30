@@ -24,4 +24,9 @@ data.json - JSON that data persists to and from
 test_habit.py - unit test for habits
 test_user.py -unit test for users
 
+
+installation:
+
+Download py files and json file on local device. Run mainq, ensure the data.json is in the same workspace and named appropriately as data.json
+
 further dependencies: questionary -> pip install questionary
